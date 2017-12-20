@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "id": "1",
+    "product_number": 100
+  },
+  "data": {
+    "type": "products",
+    "id": "1",
+    "attributes": {
+      "product_number": 100,
+      "name": "XYZ",
+      "sold_out": false,
+      "category": {
+        "name": "makeup",
+        "id": "1"
+      },
+      "under_sale": true,
+      "price": 1000,
+      "sale_price": 500,
+      "sale_text": "50% OFF"
+    },
+    "links": {
+      "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/100"
+    }
+  }
+}

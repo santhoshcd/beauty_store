@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "status": "500",
+      "source": { "pointer": "/services/api/v1/products" },
+      "title":  "Internal Server Error",
+      "code": "INTERNAL_SERVER_ERROR",
+      "detail": "Please contact support team with the requested URL"
+    }
+  ]
+}

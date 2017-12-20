@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "status": "404",
+      "code": "NOT_FOUND",
+      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "title":  "Invalid Product Number",
+      "detail": "No matching Product found in Beauty Store for the given Product Number"
+    }
+  ]
+}

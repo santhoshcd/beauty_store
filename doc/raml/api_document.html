@@ -1,0 +1,299 @@
+<!DOCTYPE HTML><html><head><title>Beauty Store API Service API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 6.4.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+      .items {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .examples {
+        margin-left: 0.5em;
+      }
+      .resource-modal li > ul {
+        margin-bottom: 1em;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Beauty Store API Service API documentation <small>version v1</small></h1><p>https://beauty-store-api.herokuapp.com</p><h3 id="home"><a href="#home">Home</a></h3><p>Welcome to Beauty store API Service Documentation. This service provides the following interface through API.</p><ul><li><p>It allows to get all products details</p><ul><li>Returns multiple products with attributes for each product.</li><li>It allows to accept mandatory and/or optional parameters to:<ul><li>Filter products based on specific categories or price</li><li>Sorting products based on price</li><li>Paginate products</li><li>Combinations of above</li></ul></li></ul></li><li><p>It allows to get a product details</p><ul><li>Returns data for a single product with its attributes.</li></ul></li></ul></div><div class="panel panel-default"><div class="panel-heading"><h3 id="services_api_v1" class="panel-title">/services/api/v1</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_services_api_v1_products"><span class="parent">/services/api/v1</span>/products</a> <span class="methods"><a href="#services_api_v1_products_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_services_api_v1_products" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#services_api_v1_products_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><h4 id="description-">Description:</h4><p>Returns multiple products with attributes for each product</p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&amp;page[offset]=2&amp;filter[category]=makeup&amp;filter[price]=2000&amp;sort[price]=asc
+</code></pre></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="services_api_v1_products_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/services/api/v1</span>/products</h4></div><div class="modal-body"><div class="alert alert-info"><h4 id="description-">Description:</h4><p>Returns multiple products with attributes for each product</p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&amp;page[offset]=2&amp;filter[category]=makeup&amp;filter[price]=2000&amp;sort[price]=asc
+</code></pre></div><ul class="nav nav-tabs"><li class="active"><a href="#services_api_v1_products_get_request" data-toggle="tab">Request</a></li><li><a href="#services_api_v1_products_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="services_api_v1_products_get_request"><h3>Query Parameters</h3><ul><li><strong>filter[category]</strong>: <em>(string)</em><p>filter based on category</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>makeup|tools|brushes</code></pre></div></li><li><strong>filter[price]</strong>: <em>(integer)</em><p>filter based on price</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1000|2000</code></pre></div></li><li><strong>page[limit]</strong>: <em>(number)</em><p>Only N entries of the products</p><p><strong>Default:</strong> 10</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>10</code></pre></div></li><li><strong>page[offset]</strong>: <em>(number)</em><p>offset value</p><p><strong>Default:</strong> 0</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>0|5</code></pre></div></li><li><strong>sort[price]</strong>: <em>(string)</em><p>sort the products based on price</p><p><strong>Default:</strong> <code>asc</code></p><p><strong>Example</strong>:</p><div class="examples"><pre><code>asc|desc</code></pre></div></li></ul></div><div class="tab-pane" id="services_api_v1_products_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "meta": {
+    "total_records": 2,
+    "links": {
+      "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&amp;page[offset]=2&amp;filter[category]=makeup&amp;filter[price]=2000&amp;sort[price]=asc",
+      "next": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&amp;page[offset]=4&amp;filter[category]=makeup&amp;filter[price]=2000&amp;sort[price]=asc",
+      "prev": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&amp;page[offset]=0&amp;filter[category]=makeup&amp;filter[price]=2000&amp;sort[price]=asc"
+    }
+  },
+  "data": [{
+      "type": "products",
+      "id": "1",
+      "attributes": {
+        "product_number": 100,
+        "name": "XYZ",
+        "sold_out": false,
+        "category": {
+          "name": "makeup",
+          "id": "1"
+        },
+        "under_sale": true,
+        "price": 1000,
+        "sale_price": 500,
+        "sale_text": "50% OFF"
+      },
+      "links": {
+        "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/100"
+      }
+    },
+    {
+      "type": "products",
+      "id": "2",
+      "attributes": {
+        "product_number": 101,
+        "name": "ABC",
+        "sold_out": false,
+        "category": {
+          "name": "tool",
+          "id": "2"
+        },
+        "under_sale": true,
+        "price": 2000,
+        "sale_price": 1800,
+        "sale_text": "20% OFF"
+      },
+      "links": {
+        "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/101"
+      }
+    }
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errors": [
+    {
+      "status": "401",
+      "code": "UNAUTHORIZED",
+      "source": { "pointer": "/services/api/v1/products" },
+      "title":  "Authentication Failed - Invalid Token",
+      "detail": "Valid JWT token should be used in http header inorder to retreive products data"
+    }
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errors": [
+    {
+      "status": "500",
+      "source": { "pointer": "/services/api/v1/products" },
+      "title":  "Internal Server Error",
+      "code": "INTERNAL_SERVER_ERROR",
+      "detail": "Please contact support team with the requested URL"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_services_api_v1_products_product_number__product_number_"><span class="parent">/services/api/v1/products/product_number</span>/{product_number}</a> <span class="methods"><a href="#services_api_v1_products_product_number__product_number__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_services_api_v1_products_product_number__product_number_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Endpoint to retreive the product with its attributes</p></div><div class="list-group"><div onclick="window.location.href = '#services_api_v1_products_product_number__product_number__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><h4 id="description-">Description:</h4><p>Returns the <code>Product</code> object with its attributes for a given <code>Product Number</code></p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/api/v1/products/100
+</code></pre></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="services_api_v1_products_product_number__product_number__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/services/api/v1/products/product_number</span>/{product_number}</h4></div><div class="modal-body"><div class="alert alert-info"><h4 id="description-">Description:</h4><p>Returns the <code>Product</code> object with its attributes for a given <code>Product Number</code></p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/api/v1/products/100
+</code></pre></div><ul class="nav nav-tabs"><li class="active"><a href="#services_api_v1_products_product_number__product_number__get_request" data-toggle="tab">Request</a></li><li><a href="#services_api_v1_products_product_number__product_number__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="services_api_v1_products_product_number__product_number__get_request"><h3>URI Parameters</h3><ul><li><strong>product_number</strong>: <em>required (number)</em><p>The <code>product_number</code> of the specific product</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>100</code></pre></div></li></ul></div><div class="tab-pane" id="services_api_v1_products_product_number__product_number__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "meta": {
+    "id": "1",
+    "product_number": 100
+  },
+  "data": {
+    "type": "products",
+    "id": "1",
+    "attributes": {
+      "product_number": 100,
+      "name": "XYZ",
+      "sold_out": false,
+      "category": {
+        "name": "makeup",
+        "id": "1"
+      },
+      "under_sale": true,
+      "price": 1000,
+      "sale_price": 500,
+      "sale_text": "50% OFF"
+    },
+    "links": {
+      "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/100"
+    }
+  }
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errors": [
+    {
+      "status": "401",
+      "code": "UNAUTHORIZED",
+      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "title":  "Authentication Failed - Invalid Token",
+      "detail": "Valid JWT token should be used in http header inorder to retreive product data"
+    }
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errors": [
+    {
+      "status": "404",
+      "code": "NOT_FOUND",
+      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "title":  "Invalid Product Number",
+      "detail": "No matching Product found in Beauty Store for the given Product Number"
+    }
+  ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errors": [
+    {
+      "status": "500",
+      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "title":  "Internal Server Error",
+      "code": "INTERNAL_SERVER_ERROR",
+      "detail": "Please contact support team with the requested URL"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#services_api_v1">/services/api/v1</a></li></ul></div></div></div></div></body></html>

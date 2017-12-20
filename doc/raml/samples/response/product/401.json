@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "status": "401",
+      "code": "UNAUTHORIZED",
+      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "title":  "Authentication Failed - Invalid Token",
+      "detail": "Valid JWT token should be used in http header inorder to retreive product data"
+    }
+  ]
+}

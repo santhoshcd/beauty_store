@@ -1,0 +1,127 @@
+#%RAML 1.0
+title: Beauty Store API Service
+version: v1
+documentation:
+ - title: Home
+   content: |
+    Welcome to Beauty store API Service Documentation. This service provides
+    the following interface through API.
+    - It allows to get all products details 
+      - Returns multiple products with attributes for each product. 
+      - It allows to accept mandatory and/or optional parameters to: 
+        - Filter products based on specific categories or price 
+        - Sorting products based on price 
+        - Paginate products 
+        - Combinations of above 
+
+    - It allows to get a product details 
+      - Returns data for a single product with its attributes. 
+
+baseUri: https://beauty-store-api.herokuapp.com
+protocols: [ HTTPS ]
+mediaType:  application/json
+/services/api/v1:
+  /products:
+    get:
+      description: |     
+        #### Description:
+        
+        Returns multiple products with attributes for each product     
+
+        #### Sample Url:
+
+            https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&page[offset]=2&filter[category]=makeup&filter[price]=2000&sort[price]=asc
+
+      queryParameters:
+        filter[category]:
+          description: |
+            filter based on category
+              
+          type: string
+          example: makeup|tools|brushes
+          required: false          
+
+        filter[price]:
+          description: |
+            filter based on price
+
+          type: integer
+          example: 1000|2000
+          required: false            
+        
+        page[limit]:
+          description: | 
+            Only N entries of the products
+            
+            **Default:**  10
+          type: number
+          example: 10 
+          required: false
+
+        page[offset]:
+          description: | 
+            offset value
+            
+            **Default:**  0
+          type: number
+          example: 0|5 
+          required: false
+
+        sort[price]:
+          description: |
+            sort the products based on price
+
+            **Default:** `asc`
+          type: string
+          example: asc|desc
+          required: false        
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include samples/response/products/200.json
+        401:
+          body:
+            application/json:
+              example: !include samples/response/products/401.json
+        500:
+          body:
+            application/json:
+              example: !include samples/response/products/500.json  
+
+    /product_number:
+      /{product_number}:
+        description: Endpoint to retreive the product with its attributes      
+        uriParameters:
+          product_number:
+            description: The `product_number` of the specific product
+            type: number
+            example: 100
+            required: true        
+        get:
+          description: |     
+            #### Description:
+            
+            Returns the `Product` object with its attributes for a given `Product Number`     
+
+            #### Sample Url:
+
+                https://beauty-store-api.herokuapp.com/api/v1/products/100
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include samples/response/product/200.json
+            401:
+              body:
+                application/json:
+                  example: !include samples/response/product/401.json
+            404:
+              body:
+                application/json:
+                  example: !include samples/response/product/404.json
+            500:
+              body:
+                application/json:
+                  example: !include samples/response/product/500.json     

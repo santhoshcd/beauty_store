@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "total_records": 2,
+    "links": {
+      "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&page[offset]=2&filter[category]=makeup&filter[price]=2000&sort[price]=asc",
+      "next": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&page[offset]=4&filter[category]=makeup&filter[price]=2000&sort[price]=asc",
+      "prev": "https://beauty-store-api.herokuapp.com/services/api/v1/products?page[limit]=2&page[offset]=0&filter[category]=makeup&filter[price]=2000&sort[price]=asc"
+    }
+  },
+  "data": [{
+      "type": "products",
+      "id": "1",
+      "attributes": {
+        "product_number": 100,
+        "name": "XYZ",
+        "sold_out": false,
+        "category": {
+          "name": "makeup",
+          "id": "1"
+        },
+        "under_sale": true,
+        "price": 1000,
+        "sale_price": 500,
+        "sale_text": "50% OFF"
+      },
+      "links": {
+        "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/100"
+      }
+    },
+    {
+      "type": "products",
+      "id": "2",
+      "attributes": {
+        "product_number": 101,
+        "name": "ABC",
+        "sold_out": false,
+        "category": {
+          "name": "tool",
+          "id": "2"
+        },
+        "under_sale": true,
+        "price": 2000,
+        "sale_price": 1800,
+        "sale_text": "20% OFF"
+      },
+      "links": {
+        "self": "https://beauty-store-api.herokuapp.com/services/api/v1/products/101"
+      }
+    }
+  ]
+}
