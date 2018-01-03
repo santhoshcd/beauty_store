@@ -17,12 +17,12 @@ class Services::Api::AuthController < ApplicationController
       token = JsonWebToken.encode payload        
       render json: {token: token}, status: :ok
     else 
-      invalid_json_response
+      invalid_token_json_response
     end
   end
 
   private
-  
+    
     def api_service_username
       "test"  
     end
@@ -41,14 +41,14 @@ class Services::Api::AuthController < ApplicationController
       decoded_token = JsonWebToken.decode jwt_token
       @jwt_payload = decoded_token[0]
     rescue Exception => e 
-      invalid_json_response
+      invalid_token_json_response
     end
 
     def auth_header
       request.headers["HTTP_AUTHORIZATION"]
     end
 
-    def invalid_json_response
+    def invalid_token_json_response
       render json: {
         errors: [{
             status: "401",
