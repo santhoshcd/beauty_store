@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <title>app/controllers/api/auth_controller.rb</title>
+    <title>app/controllers/services/api/auth_controller.rb</title>
     <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
     <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Beauty store api C0 Coverage Information - Simploco - RCov</h1>
-    <h2>app/controllers/api/auth_controller.rb</h2>
+    <h2>app/controllers/services/api/auth_controller.rb</h2>
 
     <div class="report_table_wrapper">
       <table class='report' id='report_table'>
@@ -24,18 +24,18 @@
         </thead>
         <tbody>
           <tr>
-            <td class="left_align"><a href="app-controllers-api-auth_controller_rb.html">app/controllers/api/auth_controller.rb</a></td>
+            <td class="left_align"><a href="app-controllers-services-api-auth_controller_rb.html">app/controllers/services/api/auth_controller.rb</a></td>
             <td class='right_align'><tt>64</tt></td>
             <td class='right_align'><tt>27</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.00%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>90.62%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:75px"></div>
-        <div class="uncovered" style="width:25px"></div>
+        <div class="covered" style="width:91px"></div>
+        <div class="uncovered" style="width:9px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>40.74%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>77.78%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:41px"></div>
-        <div class="uncovered" style="width:59px"></div>
+        <div class="covered" style="width:78px"></div>
+        <div class="uncovered" style="width:22px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -57,7 +57,7 @@
           <td><pre><a name="line3">3</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line4">4</a> class Api::AuthController &lt; ApplicationController</pre></td>
+          <td><pre><a name="line4">4</a> class Services::Api::AuthController &lt; ApplicationController</pre></td>
         </tr>
         <tr class="marked">
           <td><pre><a name="line5">5</a> 	before_action :check_access, except: [ :token ]</pre></td>
@@ -68,19 +68,19 @@
         <tr class="marked">
           <td><pre><a name="line7">7</a>   def token</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line8">8</a>     username = params[:username]</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line9">9</a>     password = params[:password]</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line10">10</a> </pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line11">11</a>     if is_validate_auth(username, password)</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line12">12</a>       payload = {</pre></td>
         </tr>
         <tr class="inferred">
@@ -98,16 +98,16 @@
         <tr class="inferred">
           <td><pre><a name="line17">17</a>       </pre></td>
         </tr>
-        <tr class="uncovered">
-          <td><pre><a name="line18">18</a>       token = JWT.encode payload        </pre></td>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>       token = JsonWebToken.encode payload        </pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line19">19</a>       render json: {token: token}, status: :ok</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line20">20</a>     else </pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line21">21</a>       invalid_json_response</pre></td>
         </tr>
         <tr class="inferred">
@@ -128,7 +128,7 @@
         <tr class="marked">
           <td><pre><a name="line27">27</a>     def api_service_username</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line28">28</a>       &quot;test&quot;  </pre></td>
         </tr>
         <tr class="inferred">
@@ -152,7 +152,7 @@
         <tr class="marked">
           <td><pre><a name="line35">35</a>     def is_validate_auth(username, password)</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line36">36</a>         username == api_service_username &amp;&amp; password == api_service_password</pre></td>
         </tr>
         <tr class="inferred">
@@ -171,7 +171,7 @@
           <td><pre><a name="line41">41</a>       jwt_token = auth_header.split(&quot;Bearer &quot;)[1]</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line42">42</a>       decoded_token = JWT.decode jwt_token</pre></td>
+          <td><pre><a name="line42">42</a>       decoded_token = JsonWebToken.decode jwt_token</pre></td>
         </tr>
         <tr class="uncovered">
           <td><pre><a name="line43">43</a>       @jwt_payload = decoded_token[0]</pre></td>
@@ -203,7 +203,7 @@
         <tr class="marked">
           <td><pre><a name="line52">52</a>     def invalid_json_response</pre></td>
         </tr>
-        <tr class="uncovered">
+        <tr class="marked">
           <td><pre><a name="line53">53</a>       render json: {</pre></td>
         </tr>
         <tr class="inferred">
@@ -245,7 +245,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-03 16:13:31 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-03 16:38:01 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>
