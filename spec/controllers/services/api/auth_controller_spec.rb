@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::V1::AuthController do
+describe Services::Api::AuthController do
   
   context "Auth Token Generator with application auth" do
   
