@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'json_web_token'
 
-describe Services::Api::AuthController do
+describe Services::Api::AuthController, type: :controller  do
   
   context "Auth Token Generator with application auth" do
   
@@ -11,7 +11,7 @@ describe Services::Api::AuthController do
             "status" => "401",
             "code" => "UNAUTHORIZED",
             "source" => { 
-              "pointer" => "/api/v1/auth/token" 
+              "pointer" => "http://test.host/services/api/auth/token" 
             },
             "title" =>  "Authentication Failed - Invalid Token",
             "detail" => "Pass valid username and password to get JWT token"
@@ -27,8 +27,8 @@ describe Services::Api::AuthController do
     end
 
     it "Should send token only if it is a valid username and password" do
-      controller.stub(:api_service_username).and_return("user1")
-      controller.stub(:api_service_password).and_return("test1")
+      allow_any_instance_of(Services::Api::AuthController).to receive(:api_service_username).and_return("user1")
+      allow_any_instance_of(Services::Api::AuthController).to receive(:api_service_password).and_return("test1")
 
       get 'token', params: { username: "user1", password: "test1" }
 
