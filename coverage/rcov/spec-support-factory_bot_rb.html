@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <title>config/initializers/backtrace_silencers.rb</title>
+    <title>spec/support/factory_bot.rb</title>
     <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
     <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Beauty store api C0 Coverage Information - Simploco - RCov</h1>
-    <h2>config/initializers/backtrace_silencers.rb</h2>
+    <h2>spec/support/factory_bot.rb</h2>
 
     <div class="report_table_wrapper">
       <table class='report' id='report_table'>
@@ -24,9 +24,9 @@
         </thead>
         <tbody>
           <tr>
-            <td class="left_align"><a href="config-initializers-backtrace_silencers_rb.html">config/initializers/backtrace_silencers.rb</a></td>
-            <td class='right_align'><tt>7</tt></td>
-            <td class='right_align'><tt>0</tt></td>
+            <td class="left_align"><a href="spec-support-factory_bot_rb.html">spec/support/factory_bot.rb</a></td>
+            <td class='right_align'><tt>3</tt></td>
+            <td class='right_align'><tt>2</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -50,26 +50,14 @@
 
     <table class="details">
       <tbody>
-        <tr class="inferred">
-          <td><pre><a name="line2">2</a> # Be sure to restart your server when you modify this file.</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> RSpec.configure do |config|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   config.include FactoryBot::Syntax::Methods</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line4">4</a> # You can add backtrace silencers for libraries that you&#39;re using but don&#39;t wish to see in your backtraces.</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line5">5</a> # Rails.backtrace_cleaner.add_silencer { |line| line =~ /my_noisy_library/ }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line6">6</a> </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line7">7</a> # You can also remove all the silencers if you&#39;re trying to debug a problem that might stem from framework code.</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line8">8</a> # Rails.backtrace_cleaner.remove_silencers!</pre></td>
+          <td><pre><a name="line4">4</a> end</pre></td>
         </tr>
       </tbody>
     </table>

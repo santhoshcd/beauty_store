@@ -60,7 +60,7 @@
           <td><pre><a name="line4">4</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line5">5</a> describe Services::Api::AuthController do</pre></td>
+          <td><pre><a name="line5">5</a> describe Services::Api::AuthController, type: :controller  do</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line6">6</a>   </pre></td>
@@ -90,7 +90,7 @@
           <td><pre><a name="line14">14</a>             &quot;source&quot; =&gt; { </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line15">15</a>               &quot;pointer&quot; =&gt; &quot;/api/v1/auth/token&quot; </pre></td>
+          <td><pre><a name="line15">15</a>               &quot;pointer&quot; =&gt; &quot;http://test.host/services/api/auth/token&quot; </pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line16">16</a>             },</pre></td>
@@ -138,10 +138,10 @@
           <td><pre><a name="line30">30</a>     it &quot;Should send token only if it is a valid username and password&quot; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line31">31</a>       controller.stub(:api_service_username).and_return(&quot;user1&quot;)</pre></td>
+          <td><pre><a name="line31">31</a>       allow_any_instance_of(Services::Api::AuthController).to receive(:api_service_username).and_return(&quot;user1&quot;)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line32">32</a>       controller.stub(:api_service_password).and_return(&quot;test1&quot;)</pre></td>
+          <td><pre><a name="line32">32</a>       allow_any_instance_of(Services::Api::AuthController).to receive(:api_service_password).and_return(&quot;test1&quot;)</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line33">33</a> </pre></td>
@@ -182,7 +182,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-03 16:38:01 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

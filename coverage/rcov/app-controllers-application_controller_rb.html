@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-application_controller_rb.html">app/controllers/application_controller.rb</a></td>
-            <td class='right_align'><tt>2</tt></td>
-            <td class='right_align'><tt>1</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+            <td class='right_align'><tt>63</tt></td>
+            <td class='right_align'><tt>13</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.83%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:100px"></div>
-        <div class="uncovered" style="width:0px"></div>
+        <div class="covered" style="width:97px"></div>
+        <div class="uncovered" style="width:3px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>84.62%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:100px"></div>
-        <div class="uncovered" style="width:0px"></div>
+        <div class="covered" style="width:85px"></div>
+        <div class="uncovered" style="width:15px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -54,12 +54,195 @@
           <td><pre><a name="line2">2</a> class ApplicationController &lt; ActionController::API</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> end</pre></td>
+          <td><pre><a name="line3">3</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   def index</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line5">5</a>       render json: {message: &quot;Welcome to Beauty store api service&quot;} ,status: :ok</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   def respond_not_found(title=&quot;Invalid Record Id&quot;, detail=&quot;No matching records found for id: #{params[:id]}&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     render json: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>      	errors: [{</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>        	status: &quot;404&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>        	code: &quot;NOT_FOUND&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   	    source: { </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>   	     	pointer: pointer </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   	    },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   	    title: title,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>   	    detail: detail</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>      	}]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>     }, status: 404</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   def respond_internal_error(pointer=&quot;/record_id&quot;) </pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line23">23</a>     render json: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>       errors: [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>         {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>           status: &quot;500&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>           source: { &quot;pointer&quot; =&gt; pointer },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>           title:  &quot;Internal Server Error&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a>           detail: &quot;Please contact support team with the URL&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a>       ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     }, status: 500</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>   def invalid_auth_json_response</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>     render json: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a>       errors: [{</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>         status: &quot;401&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>         code: &quot;UNAUTHORIZED&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>         source: { &quot;pointer&quot;: pointer },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>         title:  &quot;Authentication Failed - Invalid Token&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line42">42</a>         detail: &quot;Pass valid username and password to get JWT token&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a>       }]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line44">44</a>     }, status: 401</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>   def invalid_token_json_response</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>     render json: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>       errors: [{</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>         status: &quot;401&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>         code: &quot;UNAUTHORIZED&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>         source: { pointer: pointer },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>         title:  &quot;Authentication Failed - Invalid Token&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>         detail: &quot;Valid JWT token should be used in http header in order to access&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a>       ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>     }, status: 401</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>   def pointer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>     request.original_url</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-03 16:38:01 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

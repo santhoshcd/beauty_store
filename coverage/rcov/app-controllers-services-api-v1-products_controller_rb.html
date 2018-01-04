@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-services-api-v1-products_controller_rb.html">app/controllers/services/api/v1/products_controller.rb</a></td>
-            <td class='right_align'><tt>2</tt></td>
-            <td class='right_align'><tt>1</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+            <td class='right_align'><tt>23</tt></td>
+            <td class='right_align'><tt>10</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.30%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:100px"></div>
-        <div class="uncovered" style="width:0px"></div>
+        <div class="covered" style="width:91px"></div>
+        <div class="uncovered" style="width:9px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>80.00%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:100px"></div>
-        <div class="uncovered" style="width:0px"></div>
+        <div class="covered" style="width:80px"></div>
+        <div class="uncovered" style="width:20px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -51,15 +51,78 @@
     <table class="details">
       <tbody>
         <tr class="marked">
-          <td><pre><a name="line2">2</a> class Services::Api::V1::ProductsController &lt; ApplicationController</pre></td>
+          <td><pre><a name="line2">2</a> class Services::Api::V1::ProductsController &lt; Services::Api::AuthController</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> end</pre></td>
+          <td><pre><a name="line3">3</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>   def index</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line5">5</a>     @posts = Post.all</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line6">6</a>     render json: @posts</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>   def show</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>     post = Product.find_by(id: params[:product_number])</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>     if post.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>       json_data = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>         data: post.data_json,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>         links: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>           self: pointer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>       }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>       render json: json_data, status: :ok</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>       respond_not_found(&quot;Invalid Product Number&quot;, &quot;No matching Product found in Beauty Store for the given Product Number&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-03 16:38:01 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

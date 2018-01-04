@@ -25,8 +25,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-product_rb.html">app/models/product.rb</a></td>
+            <td class='right_align'><tt>25</tt></td>
             <td class='right_align'><tt>5</tt></td>
-            <td class='right_align'><tt>4</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -57,18 +57,78 @@
           <td><pre><a name="line3">3</a>   belongs_to :category</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line4">4</a>   validates :product_number, uniqueness: true</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line5">5</a>   validates :name, presence: true</pre></td>
+          <td><pre><a name="line4">4</a>   validates :name, presence: true</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> end</pre></td>
+          <td><pre><a name="line5">5</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>   def data_json</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>     {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a>   		type: &quot;product&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a>   		id: &quot;#{id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a>   		attributes: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>   			product_number: id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>   			name: name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   			sold_out: sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a>   			category: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a>   				name: category.name,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>   				id: &quot;#{category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>   			},</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>   			under_sale: under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>   			price: price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   			sale_price: sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a>   			sale_text: sale_text</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a>   	  }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     }  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>   </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-03 16:38:01 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>
