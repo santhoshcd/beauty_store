@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
       render json: {message: "Welcome to Beauty store api service"} ,status: :ok
   end
 
-  def respond_not_found(pointer="/record_id", title="Invalid Record Id", detail="No matching records found for id: #{params[:id]}")
+  def respond_not_found(title="Invalid Record Id", detail="No matching records found for id: #{params[:id]}")
     render json: {
      	errors: [{
        	status: "404",
@@ -31,16 +31,33 @@ class ApplicationController < ActionController::API
     }, status: 500
   end
 
-  def invalid_token_json_response
+  def invalid_auth_json_response
     render json: {
       errors: [{
         status: "401",
         code: "UNAUTHORIZED",
-        source: { "pointer": "/api/v1/auth/token" },
+        source: { "pointer": pointer },
         title:  "Authentication Failed - Invalid Token",
         detail: "Pass valid username and password to get JWT token"
       }]
     }, status: 401
   end
     
+  def invalid_token_json_response
+    render json: {
+      errors: [{
+        status: "401",
+        code: "UNAUTHORIZED",
+        source: { pointer: pointer },
+        title:  "Authentication Failed - Invalid Token",
+        detail: "Valid JWT token should be used in http header in order to access"
+        }
+      ]
+    }, status: 401
+  end
+
+  def pointer
+    request.original_url
+  end
+
 end

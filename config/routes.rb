@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   namespace :services do 
     namespace :api do 
     	get 'auth/token', to: 'auth#token'
+
+    	namespace :v1 do
+    		get 'products/:product_number', to: 'products#show'
+    	end
     end
   end
 end
