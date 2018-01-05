@@ -1,0 +1,11 @@
+{
+	"errors" : [
+		{
+			"status" : "400",
+			"code" : "BAD_REQUEST",
+			"source" : { "pointer" : "https://beauty-store-api.herokuapp.com/services/api/v1/products" },
+			"title" : "Parameter are not valid",
+			"detail" : "Passed parameter is/are not valid, please pass valid parameter"
+		}
+	]
+}

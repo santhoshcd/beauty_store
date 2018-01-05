@@ -11,7 +11,7 @@
       "type": "products",
       "id": "1",
       "attributes": {
-        "product_number": 100,
+        "product_number": 1,
         "name": "XYZ",
         "sold_out": false,
         "category": {
@@ -31,7 +31,7 @@
       "type": "products",
       "id": "2",
       "attributes": {
-        "product_number": 101,
+        "product_number": 2,
         "name": "ABC",
         "sold_out": false,
         "category": {

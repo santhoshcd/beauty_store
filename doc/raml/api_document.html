@@ -181,7 +181,7 @@
       "type": "products",
       "id": "1",
       "attributes": {
-        "product_number": 100,
+        "product_number": 1,
         "name": "XYZ",
         "sold_out": false,
         "category": {
@@ -201,7 +201,7 @@
       "type": "products",
       "id": "2",
       "attributes": {
-        "product_number": 101,
+        "product_number": 2,
         "name": "ABC",
         "sold_out": false,
         "category": {
@@ -218,12 +218,22 @@
       }
     }
   ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"errors" : [
+		{
+			"status" : "400",
+			"code" : "BAD_REQUEST",
+			"source" : { "pointer" : "https://beauty-store-api.herokuapp.com/services/api/v1/products" },
+			"title" : "Parameter are not valid",
+			"detail" : "Passed parameter is/are not valid, please pass valid parameter"
+		}
+	]
 }</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
   "errors": [
     {
       "status": "401",
       "code": "UNAUTHORIZED",
-      "source": { "pointer": "/services/api/v1/products" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products" },
       "title":  "Authentication Failed - Invalid Token",
       "detail": "Valid JWT token should be used in http header inorder to retreive products data"
     }
@@ -232,7 +242,7 @@
   "errors": [
     {
       "status": "500",
-      "source": { "pointer": "/services/api/v1/products" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products" },
       "title":  "Internal Server Error",
       "code": "INTERNAL_SERVER_ERROR",
       "detail": "Please contact support team with the requested URL"
@@ -241,15 +251,11 @@
 }</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_services_api_v1_products_product_number__product_number_"><span class="parent">/services/api/v1/products/product_number</span>/{product_number}</a> <span class="methods"><a href="#services_api_v1_products_product_number__product_number__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_services_api_v1_products_product_number__product_number_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Endpoint to retreive the product with its attributes</p></div><div class="list-group"><div onclick="window.location.href = '#services_api_v1_products_product_number__product_number__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><h4 id="description-">Description:</h4><p>Returns the <code>Product</code> object with its attributes for a given <code>Product Number</code></p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/api/v1/products/100
 </code></pre></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="services_api_v1_products_product_number__product_number__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/services/api/v1/products/product_number</span>/{product_number}</h4></div><div class="modal-body"><div class="alert alert-info"><h4 id="description-">Description:</h4><p>Returns the <code>Product</code> object with its attributes for a given <code>Product Number</code></p><h4 id="sample-url-">Sample Url:</h4><pre><code>https://beauty-store-api.herokuapp.com/api/v1/products/100
 </code></pre></div><ul class="nav nav-tabs"><li class="active"><a href="#services_api_v1_products_product_number__product_number__get_request" data-toggle="tab">Request</a></li><li><a href="#services_api_v1_products_product_number__product_number__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="services_api_v1_products_product_number__product_number__get_request"><h3>URI Parameters</h3><ul><li><strong>product_number</strong>: <em>required (number)</em><p>The <code>product_number</code> of the specific product</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>100</code></pre></div></li></ul></div><div class="tab-pane" id="services_api_v1_products_product_number__product_number__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "meta": {
-    "id": "1",
-    "product_number": 100
-  },
   "data": {
     "type": "products",
     "id": "1",
     "attributes": {
-      "product_number": 100,
+      "product_number" : 1,
       "name": "XYZ",
       "sold_out": false,
       "category": {
@@ -270,7 +276,7 @@
     {
       "status": "401",
       "code": "UNAUTHORIZED",
-      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products/:product_number" },
       "title":  "Authentication Failed - Invalid Token",
       "detail": "Valid JWT token should be used in http header inorder to retreive product data"
     }
@@ -280,7 +286,7 @@
     {
       "status": "404",
       "code": "NOT_FOUND",
-      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products/:product_number" },
       "title":  "Invalid Product Number",
       "detail": "No matching Product found in Beauty Store for the given Product Number"
     }
@@ -290,7 +296,7 @@
   "errors": [
     {
       "status": "500",
-      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products/:product_number" },
       "title":  "Internal Server Error",
       "code": "INTERNAL_SERVER_ERROR",
       "detail": "Please contact support team with the requested URL"

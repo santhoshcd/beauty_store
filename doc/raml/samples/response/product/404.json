@@ -3,7 +3,7 @@
     {
       "status": "404",
       "code": "NOT_FOUND",
-      "source": { "pointer": "/services/api/v1/products/:product_number" },
+      "source": { "pointer": "https://beauty-store-api.herokuapp.com/services/api/v1/products/:product_number" },
       "title":  "Invalid Product Number",
       "detail": "No matching Product found in Beauty Store for the given Product Number"
     }
