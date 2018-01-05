@@ -25,8 +25,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-controllers-services-api-v1-products_controller_spec_rb.html">spec/controllers/services/api/v1/products_controller_spec.rb</a></td>
-            <td class='right_align'><tt>104</tt></td>
-            <td class='right_align'><tt>36</tt></td>
+            <td class='right_align'><tt>315</tt></td>
+            <td class='right_align'><tt>97</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -81,291 +81,924 @@
           <td><pre><a name="line11">11</a> 		create(:product, category: category)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> 	end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line13">13</a> </pre></td>
+          <td><pre><a name="line12">12</a>     </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line14">14</a> 	context &quot;Products&quot; do</pre></td>
+          <td><pre><a name="line13">13</a>     category1 = create(:category)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>     create(:product, category: category1)</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line15">15</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line16">16</a> 		it &quot;Should return 401 if token is an invalid&quot; do</pre></td>
+          <td><pre><a name="line16">16</a>     PRODUCT_DEFAULT_LIMIT = 10</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> 	end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line17">17</a> 			product_number = 10001</pre></td>
+          <td><pre><a name="line19">19</a> 	context &quot;Products&quot; do</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line18">18</a> 			expected_result = {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line19">19</a> 			  &quot;errors&quot; =&gt; [</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line20">20</a> 			    {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line21">21</a> 			      &quot;status&quot; =&gt; &quot;401&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line22">22</a> 			      &quot;code&quot; =&gt; &quot;UNAUTHORIZED&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line23">23</a> 			      &quot;source&quot; =&gt; { &quot;pointer&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product_number}&quot; },</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line24">24</a> 			      &quot;title&quot; =&gt;  &quot;Authentication Failed - Invalid Token&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line25">25</a> 			      &quot;detail&quot; =&gt; &quot;Valid JWT token should be used in http header in order to access&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line26">26</a> 			    }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line27">27</a> 			  ]</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line28">28</a> 			}</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line29">29</a> </pre></td>
+          <td><pre><a name="line21">21</a> 		it &quot;Should return 401 if token is an invalid&quot; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line30">30</a> 			get :show, params: { product_number: product_number }</pre></td>
+          <td><pre><a name="line22">22</a>       request.env[&#39;HTTP_AUTHORIZATION&#39;] = &quot;Bearer AWSCD&quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line31">31</a> </pre></td>
+          <td><pre><a name="line23">23</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line32">32</a> 			result = JSON.parse(response.body)</pre></td>
+          <td><pre><a name="line24">24</a> 			product_number = 10001</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line33">33</a> 			expect(response.code).to eq(&quot;401&quot;)</pre></td>
+          <td><pre><a name="line25">25</a> 			expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> 			  &quot;errors&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> 			    {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> 			      &quot;status&quot; =&gt; &quot;401&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a> 			      &quot;code&quot; =&gt; &quot;UNAUTHORIZED&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line30">30</a> 			      &quot;source&quot; =&gt; { &quot;pointer&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product_number}&quot; },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> 			      &quot;title&quot; =&gt;  &quot;Authentication Failed - Invalid Token&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a> 			      &quot;detail&quot; =&gt; &quot;Valid JWT token should be used in http header in order to access&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a> 			    }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> 			  ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> 			}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line34">34</a>       expect(result).to eq(expected_result) </pre></td>
+          <td><pre><a name="line37">37</a> 			get :show, params: { product_number: product_number }</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line35">35</a> 		end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line36">36</a> 		</pre></td>
+          <td><pre><a name="line38">38</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line37">37</a> 		context &quot;Product details&quot; do</pre></td>
+          <td><pre><a name="line39">39</a> 			result = JSON.parse(response.body)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line38">38</a> 			before do</pre></td>
+          <td><pre><a name="line40">40</a> 			expect(response.code).to eq(&quot;401&quot;)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line39">39</a> 				payload = {</pre></td>
+          <td><pre><a name="line41">41</a>       expect(result).to eq(expected_result) </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line40">40</a>   			  data: {</pre></td>
+          <td><pre><a name="line42">42</a> 		end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line41">41</a>   			    username: &quot;test&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line42">42</a>   			  }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line43">43</a>   			}</pre></td>
+          <td><pre><a name="line43">43</a> 	 </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line44">44</a>   			token = JsonWebToken.encode payload</pre></td>
+          <td><pre><a name="line44">44</a>     context &quot;Products details&quot; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line45">45</a>   			request.env[&#39;HTTP_AUTHORIZATION&#39;] = &quot;Bearer #{token}&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line46">46</a> 			end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line47">47</a> </pre></td>
+          <td><pre><a name="line45">45</a>       before do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line48">48</a>   		it &quot;Should return 404 if Product not found&quot; do</pre></td>
+          <td><pre><a name="line46">46</a>         payload = {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line49">49</a> </pre></td>
+          <td><pre><a name="line47">47</a>           data: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>             username: &quot;test&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>         }</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line50">50</a>   			product_number = 10001</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line51">51</a>   			</pre></td>
+          <td><pre><a name="line51">51</a>         token = JsonWebToken.encode payload</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line52">52</a>   			expected_result = {</pre></td>
+          <td><pre><a name="line52">52</a>         request.env[&#39;HTTP_AUTHORIZATION&#39;] = &quot;Bearer #{token}&quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line53">53</a>   			  &quot;errors&quot; =&gt; [</pre></td>
+          <td><pre><a name="line53">53</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line54">54</a>   			    {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line55">55</a>   			      &quot;status&quot; =&gt; &quot;404&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line56">56</a>   			      &quot;code&quot; =&gt; &quot;NOT_FOUND&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line57">57</a>   			      &quot;source&quot; =&gt; { &quot;pointer&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product_number}&quot; },</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line58">58</a>   			      &quot;title&quot; =&gt;  &quot;Invalid Product Number&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line59">59</a>   			      &quot;detail&quot; =&gt; &quot;No matching Product found in Beauty Store for the given Product Number&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line60">60</a>   			    }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line61">61</a>   			  ]</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line62">62</a>   			}</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line63">63</a> </pre></td>
+          <td><pre><a name="line54">54</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line64">64</a>   			get :show, params: { product_number: product_number }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line65">65</a> </pre></td>
+          <td><pre><a name="line55">55</a>       it &quot;should return products details&quot; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line66">66</a>         result = JSON.parse(response.body)</pre></td>
+          <td><pre><a name="line56">56</a>         products = Product.all</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line67">67</a>         expect(response.code).to eq(&quot;404&quot;)</pre></td>
+          <td><pre><a name="line57">57</a>         limit = PRODUCT_DEFAULT_LIMIT</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line68">68</a>         expect(result).to eq(expected_result) </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line69">69</a>   		end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line70">70</a> </pre></td>
+          <td><pre><a name="line58">58</a>         offset = 0</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line71">71</a> 	    it &quot;Get a product details&quot; do</pre></td>
+          <td><pre><a name="line59">59</a>         expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>           &quot;meta&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a>             &quot;total_records&quot; =&gt; products.count,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{PRODUCT_DEFAULT_LIMIT}&amp;page[offset]=#{offset}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>           },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>           &quot;data&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>           ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line72">72</a>   			product = Product.last</pre></td>
+          <td><pre><a name="line70">70</a>         products.each do |product|</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line73">73</a>         </pre></td>
+          <td><pre><a name="line71">71</a>           expected_result[&quot;data&quot;] &lt;&lt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>             &quot;data&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>             }</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line74">74</a>         expected_result = {</pre></td>
+          <td><pre><a name="line92">92</a>           }</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line75">75</a>           &quot;data&quot; =&gt; {</pre></td>
+          <td><pre><a name="line93">93</a>         end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line76">76</a>             &quot;type&quot; =&gt; &quot;product&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line77">77</a>             &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line78">78</a>             &quot;attributes&quot; =&gt; {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line79">79</a>               &quot;product_number&quot; =&gt; product.id,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line80">80</a>               &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line81">81</a>               &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line82">82</a>               &quot;category&quot; =&gt; {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line83">83</a>                 &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line84">84</a>                 &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line85">85</a>               },</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line86">86</a>               &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line87">87</a>               &quot;price&quot; =&gt; product.price.to_f,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line88">88</a>               &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line89">89</a>               &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line90">90</a>             }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line91">91</a>           },</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line92">92</a>           &quot;links&quot; =&gt; {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line93">93</a>             &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line94">94</a>           }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line95">95</a>         }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line96">96</a> </pre></td>
+          <td><pre><a name="line94">94</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line97">97</a>   			product_number = product.id</pre></td>
+          <td><pre><a name="line95">95</a>         get :index</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line98">98</a>   			get :show, params: { product_number: product_number }</pre></td>
+          <td><pre><a name="line96">96</a>         result = JSON.parse(response.body)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line99">99</a>   			result = JSON.parse(response.body)</pre></td>
+          <td><pre><a name="line97">97</a>         expect(response.code).to eq(&quot;200&quot;)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line100">100</a>         expect(response.code).to eq(&quot;200&quot;)</pre></td>
+          <td><pre><a name="line98">98</a>         expect(result).to eq(expected_result) </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line101">101</a>         expect(result).to eq(expected_result)</pre></td>
+          <td><pre><a name="line101">101</a>       it &quot;should get products details based on paginate&quot; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>         offset = 0</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line103">103</a>         limit = 1</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line104">104</a>         total_products = Product.count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line105">105</a>         products = Product.all.offset(offset).limit(limit)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>         next_offset = (offset + 1) * limit</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line107">107</a>         expected_result = {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line102">102</a> 	    end</pre></td>
+          <td><pre><a name="line108">108</a>           &quot;meta&quot; =&gt; {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line103">103</a>     end</pre></td>
+          <td><pre><a name="line109">109</a>             &quot;total_records&quot; =&gt; total_products,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line104">104</a> 	end</pre></td>
+          <td><pre><a name="line110">110</a>             &quot;links&quot; =&gt; {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line105">105</a> end</pre></td>
+          <td><pre><a name="line111">111</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=0&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>               &quot;next&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=#{next_offset}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>           },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>           &quot;data&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line116">116</a>           ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line119">119</a>         products.each do |product|</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line120">120</a>           expected_result[&quot;data&quot;] &lt;&lt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>             &quot;data&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line125">125</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line126">126</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line127">127</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line128">128</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line129">129</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line130">130</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line131">131</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line132">132</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line133">133</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line134">134</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line135">135</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line136">136</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line137">137</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line138">138</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line139">139</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line140">140</a>             }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line141">141</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line142">142</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line143">143</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line144">144</a>         get :index, params: {page: {limit: limit, offset: offset}}</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line145">145</a>         result = JSON.parse(response.body)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line146">146</a>         expect(response.code).to eq(&quot;200&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line147">147</a>         expect(result).to eq(expected_result) </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line148">148</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line149">149</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line150">150</a>       it &quot;should get products details based on price sort ascending order&quot; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line151">151</a>         offset = 0</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line152">152</a>         limit = 1</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line153">153</a>         order = &quot;asc&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line154">154</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line155">155</a>         total_products = Product.count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line156">156</a>         products = Product.all.offset(offset).limit(limit)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line157">157</a>         next_offset = (offset + 1) * limit</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line158">158</a>         expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line159">159</a>           &quot;meta&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line160">160</a>             &quot;total_records&quot; =&gt; total_products,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line161">161</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line162">162</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=0&amp;sort[price]=#{order}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line163">163</a>               &quot;next&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=#{next_offset}&amp;sort[price]=#{order}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line164">164</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line165">165</a>           },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line166">166</a>           &quot;data&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line167">167</a>           ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line168">168</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line169">169</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line170">170</a>         products.each do |product|</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line171">171</a>           expected_result[&quot;data&quot;] &lt;&lt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line172">172</a>             &quot;data&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line173">173</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line174">174</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line175">175</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line176">176</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line177">177</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line178">178</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line179">179</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line180">180</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line181">181</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line182">182</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line183">183</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line184">184</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line185">185</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line186">186</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line187">187</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line188">188</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line189">189</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line190">190</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line191">191</a>             }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line192">192</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line193">193</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line194">194</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line195">195</a>         get :index, params: {page: {limit: limit, offset: offset}, sort: {price: order}}</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line196">196</a>         result = JSON.parse(response.body)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line197">197</a>         expect(response.code).to eq(&quot;200&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line198">198</a>         expect(result).to eq(expected_result) </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line199">199</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line200">200</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line201">201</a>       it &quot;should get filtered products details based on category&quot; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line202">202</a>         offset = 0</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line203">203</a>         limit = 1</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line204">204</a>         order = &quot;asc&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line205">205</a>         filter_category_value = &quot;makeup&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line206">206</a>         category = Category.last</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line207">207</a>         category.name = filter_category_value</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line208">208</a>         category.save</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line209">209</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line210">210</a>         total_products = Product.where(&quot;category_id = #{category.id}&quot;).count</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line211">211</a>         products = Product.where(&quot;category_id = #{category.id}&quot;).order(&quot;price asc&quot;).offset(offset).limit(limit)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line212">212</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line213">213</a>         next_offset = (offset + 1) * limit</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line214">214</a>         expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line215">215</a>           &quot;meta&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line216">216</a>             &quot;total_records&quot; =&gt; total_products,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line217">217</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line218">218</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=0&amp;sort[price]=#{order}&amp;filter[category]=#{filter_category_value}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line219">219</a>               &quot;next&quot; =&gt; &quot;http://test.host/services/api/v1/products?page[limit]=#{limit}&amp;page[offset]=#{next_offset}&amp;sort[price]=#{order}&amp;filter[category]=#{filter_category_value}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line220">220</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line221">221</a>           },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line222">222</a>           &quot;data&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line223">223</a>           ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line224">224</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line225">225</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line226">226</a>         products.each do |product|</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line227">227</a>           expected_result[&quot;data&quot;] &lt;&lt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line228">228</a>             &quot;data&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line229">229</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line230">230</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line231">231</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line232">232</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line233">233</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line234">234</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line235">235</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line236">236</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line237">237</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line238">238</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line239">239</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line240">240</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line241">241</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line242">242</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line243">243</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line244">244</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line245">245</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line246">246</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line247">247</a>             }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line248">248</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line249">249</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line250">250</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line251">251</a>         get :index, params: {page: {limit: limit, offset: offset}, sort: {price: order}, filter: {category: filter_category_value}}</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line252">252</a>         result = JSON.parse(response.body)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line253">253</a>         expect(response.code).to eq(&quot;200&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line254">254</a>         expect(result).to eq(expected_result) </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line255">255</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line256">256</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line257">257</a>   		context &quot;A Product details&quot; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line258">258</a>     		it &quot;Should return 404 if Product not found&quot; do</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line259">259</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line260">260</a>     			product_number = 10001</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line261">261</a>     			</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line262">262</a>     			expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line263">263</a>     			  &quot;errors&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line264">264</a>     			    {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line265">265</a>     			      &quot;status&quot; =&gt; &quot;404&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line266">266</a>     			      &quot;code&quot; =&gt; &quot;NOT_FOUND&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line267">267</a>     			      &quot;source&quot; =&gt; { &quot;pointer&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product_number}&quot; },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line268">268</a>     			      &quot;title&quot; =&gt;  &quot;Invalid Product Number&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line269">269</a>     			      &quot;detail&quot; =&gt; &quot;No matching Product found in Beauty Store for the given Product Number&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line270">270</a>     			    }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line271">271</a>     			  ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line272">272</a>     			}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line273">273</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line274">274</a>     			get :show, params: { product_number: product_number }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line275">275</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line276">276</a>           result = JSON.parse(response.body)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line277">277</a>           expect(response.code).to eq(&quot;404&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line278">278</a>           expect(result).to eq(expected_result) </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line279">279</a>     		end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line280">280</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line281">281</a>   	    it &quot;Get a product details&quot; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line282">282</a>     			product = Product.last</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line283">283</a>           </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line284">284</a>           expected_result = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line285">285</a>             &quot;data&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line286">286</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line287">287</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line288">288</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line289">289</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line290">290</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line291">291</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line292">292</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line293">293</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line294">294</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line295">295</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line296">296</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line297">297</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line298">298</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line299">299</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line300">300</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line301">301</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line302">302</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line303">303</a>               &quot;self&quot; =&gt; &quot;http://test.host/services/api/v1/products/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line304">304</a>             }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line305">305</a>           }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line306">306</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line307">307</a>     			product_number = product.id</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line308">308</a>     			get :show, params: { product_number: product_number }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line309">309</a>     			result = JSON.parse(response.body)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line310">310</a>           expect(response.code).to eq(&quot;200&quot;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line311">311</a>           expect(result).to eq(expected_result)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line312">312</a>   	    end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line313">313</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line314">314</a>     end  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line315">315</a> 	end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line316">316</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-05 18:09:03 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

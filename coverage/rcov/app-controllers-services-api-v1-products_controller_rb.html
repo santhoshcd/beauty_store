@@ -25,17 +25,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-services-api-v1-products_controller_rb.html">app/controllers/services/api/v1/products_controller.rb</a></td>
-            <td class='right_align'><tt>23</tt></td>
-            <td class='right_align'><tt>10</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.30%</tt></div>
+            <td class='right_align'><tt>99</tt></td>
+            <td class='right_align'><tt>38</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.97%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:91px"></div>
-        <div class="uncovered" style="width:9px"></div>
+        <div class="covered" style="width:97px"></div>
+        <div class="uncovered" style="width:3px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>80.00%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>92.11%</tt></div>
       <div class="percent_graph">
-        <div class="covered" style="width:80px"></div>
-        <div class="uncovered" style="width:20px"></div>
+        <div class="covered" style="width:92px"></div>
+        <div class="uncovered" style="width:8px"></div>
       </div></td>
           </tr>
         </tbody>
@@ -53,76 +53,304 @@
         <tr class="marked">
           <td><pre><a name="line2">2</a> class Services::Api::V1::ProductsController &lt; Services::Api::AuthController</pre></td>
         </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   DEFAULT_LIMIT = 10</pre></td>
+        </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> </pre></td>
+          <td><pre><a name="line4">4</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line4">4</a>   def index</pre></td>
+          <td><pre><a name="line5">5</a>   def index</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>     # p &quot;XXXXXXXXXXXXXXXXXXXX&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>     # p params.inspect</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>     page = params[:page]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     filter = params[:filter]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>     sort = params[:sort]</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>     page.present? ? (limit, offset = [page[:limit].to_i, page[:offset].to_i]) : (limit , offset = [DEFAULT_LIMIT, 0])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a>     </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>     links = {}</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>     links[&quot;self&quot;] = &quot;#{request.base_url + request.path}?page[limit]=#{limit}&amp;page[offset]=#{offset}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>     next_offset = (offset + 1) * limit</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a>     # p &quot;yyyyyyyyy&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a>     # p next_offset</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>     links[&quot;next&quot;] = &quot;#{request.base_url + request.path}?page[limit]=#{limit}&amp;page[offset]=#{next_offset}&quot; if Product.count &gt; next_offset</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>     order = &quot;&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>     category_condition = &quot;&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     if sort.present? &amp;&amp; sort[:price].present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a>       order = &quot;price #{sort[:price]}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>       links[&quot;self&quot;] &lt;&lt; &quot;&amp;sort[price]=#{sort[:price]}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>       links[&quot;next&quot;] &lt;&lt; &quot;&amp;sort[price]=#{sort[:price]}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>     if filter.present? &amp;&amp; filter[:category].present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       category = Category.find_by(name: filter[:category])</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>       category_condition = &quot;category_id=#{category.id}&quot; if category.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>       links[&quot;self&quot;] &lt;&lt; &quot;&amp;filter[category]=#{filter[:category]}&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>       links[&quot;next&quot;] &lt;&lt; &quot;&amp;filter[category]=#{filter[:category]}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>     if filter.present? &amp;&amp; filter[:price].present?</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line5">5</a>     @posts = Post.all</pre></td>
+          <td><pre><a name="line37">37</a>       category_condition = &quot;price=#{filter[:price]}&quot;</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line6">6</a>     render json: @posts</pre></td>
+          <td><pre><a name="line38">38</a>       links[&quot;self&quot;] &lt;&lt; &quot;&amp;filter[price]=#{filter[:price]}&quot;</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line39">39</a>       links[&quot;next&quot;] &lt;&lt; &quot;&amp;filter[price]=#{filter[:price]}&quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a>   end</pre></td>
+          <td><pre><a name="line40">40</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> </pre></td>
+          <td><pre><a name="line41">41</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line9">9</a>   def show</pre></td>
+          <td><pre><a name="line42">42</a>     total_products = Product.where(category_condition).count</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line10">10</a>     post = Product.find_by(id: params[:product_number])</pre></td>
+          <td><pre><a name="line44">44</a>     products = Product.where(category_condition).order(order).offset(offset).limit(limit)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a>     </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a>     if post.present?</pre></td>
+          <td><pre><a name="line48">48</a>     json_data = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>           &quot;meta&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a>             &quot;total_records&quot; =&gt; total_products,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>             &quot;links&quot; =&gt; links</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line52">52</a>           },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a>           &quot;data&quot; =&gt; [</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a>           ]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line12">12</a>       json_data = {</pre></td>
+          <td><pre><a name="line57">57</a>         products.each do |product|</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line13">13</a>         data: post.data_json,</pre></td>
+          <td><pre><a name="line58">58</a>           json_data[&quot;data&quot;] &lt;&lt; {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line14">14</a>         links: {</pre></td>
+          <td><pre><a name="line59">59</a>             &quot;data&quot; =&gt; {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line15">15</a>           self: pointer</pre></td>
+          <td><pre><a name="line60">60</a>               &quot;type&quot; =&gt; &quot;products&quot;,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line16">16</a>         }</pre></td>
+          <td><pre><a name="line61">61</a>               &quot;id&quot; =&gt; &quot;#{product.id}&quot;,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line17">17</a>       }</pre></td>
+          <td><pre><a name="line62">62</a>               &quot;attributes&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a>                 &quot;product_number&quot; =&gt; product.id,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line64">64</a>                 &quot;name&quot; =&gt; &quot;#{product.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>                 &quot;sold_out&quot; =&gt; product.sold_out,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a>                 &quot;category&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line67">67</a>                   &quot;name&quot; =&gt; &quot;#{product.category.name}&quot;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line68">68</a>                   &quot;id&quot; =&gt; &quot;#{product.category.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line69">69</a>                 },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a>                 &quot;under_sale&quot; =&gt; product.under_sale,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>                 &quot;price&quot; =&gt; product.price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a>                 &quot;sale_price&quot; =&gt; product.sale_price.to_f,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line73">73</a>                 &quot;sale_text&quot; =&gt; &quot;#{product.sale_text}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line74">74</a>               }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line75">75</a>             },</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>             &quot;links&quot; =&gt; {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a>               &quot;self&quot; =&gt; &quot;#{request.base_url + request.path}/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>             }</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line18">18</a>       render json: json_data, status: :ok</pre></td>
+          <td><pre><a name="line79">79</a>           }</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line19">19</a>     else</pre></td>
+          <td><pre><a name="line80">80</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line20">20</a>       respond_not_found(&quot;Invalid Product Number&quot;, &quot;No matching Product found in Beauty Store for the given Product Number&quot;)</pre></td>
+          <td><pre><a name="line82">82</a>     render json: json_data, status: :ok</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line21">21</a>     end</pre></td>
+          <td><pre><a name="line83">83</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line22">22</a>   end</pre></td>
+          <td><pre><a name="line84">84</a>   </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>   def show</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>     post = Product.find_by(id: params[:product_number])</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line87">87</a>     if post.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line88">88</a>       json_data = {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line23">23</a> </pre></td>
+          <td><pre><a name="line89">89</a>         data: post.data_json,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line24">24</a> end</pre></td>
+          <td><pre><a name="line90">90</a>         links: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a>           self: pointer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>         }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>       }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line94">94</a>       render json: json_data, status: :ok</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a>     else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>       respond_not_found(&quot;Invalid Product Number&quot;, &quot;No matching Product found in Beauty Store for the given Product Number&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line97">97</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line100">100</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-01-04 15:33:07 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-01-05 18:09:03 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>
