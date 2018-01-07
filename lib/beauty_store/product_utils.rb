@@ -5,13 +5,25 @@ module BeautyStore
   		offset / limit
   	end
 
+    def filter_query
+      query = ""
+      if filter.present? 
+        query << "&filter[category]=#{filter[:category]}" if filter[:category].present?
+        query << "&filter[price]=#{filter[:price]}" if filter[:price].present?
+      end
+      query
+    end
+
+    def sort_query
+      query = ""
+      query = "&sort[price]=#{sort[:price]}" if sort.present? && sort[:price].present?
+      query
+    end
+
   	def self_url
       current_page_url = "#{url}?page[limit]=#{limit}&page[offset]=#{offset}"
-      current_page_url << "&sort[price]=#{sort[:price]}" if sort.present? && sort[:price].present?
-      if filter.present? 
-        current_page_url << "&filter[category]=#{filter[:category]}" if filter[:category].present?
-        current_page_url << "&filter[price]=#{filter[:price]}" if filter[:price].present?
-      end
+      current_page_url << sort_query
+      current_page_url << filter_query
       current_page_url
   	end
 
@@ -19,11 +31,8 @@ module BeautyStore
       next_offset = (current_page + 1) * limit
       if result.count > next_offset
         next_page_url = "#{url}?page[limit]=#{limit}&page[offset]=#{next_offset}"
-        next_page_url << "&sort[price]=#{sort[:price]}" if sort.present? && sort[:price].present?
-        if filter.present?
-          next_page_url << "&filter[category]=#{filter[:category]}" if filter[:category].present?
-          next_page_url << "&filter[price]=#{filter[:price]}" if filter[:price].present?
-        end
+        next_page_url << sort_query
+        next_page_url << filter_query
       end
       next_page_url
   	end
@@ -32,11 +41,8 @@ module BeautyStore
       prev_offset = (current_page - 1 ) * limit
       if prev_offset > -1
         prev_page_url = "#{url}?page[limit]=#{limit}&page[offset]=#{prev_offset}"
-        prev_page_url << "&sort[price]=#{sort[:price]}" if sort.present? && sort[:price].present?
-        if filter.present?
-          prev_page_url << "&filter[category]=#{filter[:category]}" if filter[:category].present?
-          prev_page_url << "&filter[price]=#{filter[:price]}" if filter[:price].present?
-        end
+        prev_page_url << sort_query
+        prev_page_url << filter_query
       end
       prev_page_url
   	end
