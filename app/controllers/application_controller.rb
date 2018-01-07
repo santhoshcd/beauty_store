@@ -1,10 +1,21 @@
 class ApplicationController < ActionController::API
-
-  def index
-      render json: {message: "Welcome to Beauty store api service"} ,status: :ok
+  rescue_from ActionController::RoutingError do |exception|
+    respond_not_found
   end
 
-  def respond_not_found(title="Invalid Record Id", detail="No matching records found for id: #{params[:id]}")
+  rescue_from Exception do |exception|
+    respond_internal_error
+  end
+
+  def catch_404
+    raise ActionController::RoutingError.new(params[:path])
+  end
+
+  def index
+    render json: {message: "Welcome to Beauty store api service"} ,status: :ok
+  end
+
+  def respond_not_found(title="Invalid URL", detail="URL is Not found")
     render json: {
      	errors: [{
        	status: "404",
@@ -18,7 +29,7 @@ class ApplicationController < ActionController::API
     }, status: 404
   end
 
-  def respond_internal_error(pointer="/record_id") 
+  def respond_internal_error 
     render json: {
       errors: [
         {
