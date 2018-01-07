@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   def data_json
     {
-  		type: "product",
+  		type: "products",
   		id: "#{id}",
   		attributes: {
   			product_number: id,
@@ -21,5 +21,5 @@ class Product < ApplicationRecord
   	  }
     }  
   end
-  
+
 end

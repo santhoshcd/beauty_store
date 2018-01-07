@@ -1,4 +1,24 @@
+require "beauty_store/products_data"
 class Services::Api::V1::ProductsController < Services::Api::AuthController
+
+  def index
+    page = params[:page]
+    filter = params[:filter]
+    sort = params[:sort]
+
+    if page.present? 
+      offset = page[:offset].to_i 
+      limit = page[:limit].to_i
+    else
+      offset = nil 
+      limit = nil
+    end
+
+    url = "#{request.base_url}#{request.path}"
+    products = BeautyStore::ProductsData.new(url, offset, limit, filter, sort)
+    json_data = products.json_response
+    render json: json_data, status: :ok
+  end
 
   def show
     post = Product.find_by(id: params[:product_number])

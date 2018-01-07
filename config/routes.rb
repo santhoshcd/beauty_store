@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     	get 'auth/token', to: 'auth#token'
 
     	namespace :v1 do
+        get 'products', to: 'products#index'
     		get 'products/:product_number', to: 'products#show'
     	end
     end

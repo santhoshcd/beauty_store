@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>lib/beauty_store/products_data.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Beauty store api C0 Coverage Information - Simploco - RCov</h1>
+    <h2>lib/beauty_store/products_data.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="lib-beauty_store-products_data_rb.html">lib/beauty_store/products_data.rb</a></td>
+            <td class='right_align'><tt>54</tt></td>
+            <td class='right_align'><tt>30</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:100px"></div>
+        <div class="uncovered" style="width:0px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> module BeautyStore</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a> 	class ProductsData</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a> 		include ProductUtils</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> 		</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a> 		attr_reader :offset, :limit, :filter, :sort, :url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line7">7</a> 		attr_accessor :result</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a> 		def initialize(url=&quot;/products&quot;, offset=0, limit=10, filter=nil, sort=nil)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a> 			@url = url</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a> 			@offset = offset || 0</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a> 			@limit = limit || 10</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a> 			@filter = filter </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a> 			@sort = sort</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> 		end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a> 		def json_response</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>       json_data = data</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> 			{</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>         &quot;meta&quot; =&gt; {  </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> 					&quot;total_records&quot; =&gt; result.count,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> 					&quot;links&quot; =&gt; ref_links</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> 				},</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>         &quot;data&quot; =&gt; json_data</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a> 			}</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> 		end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a> 		def data</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>       order = &quot;&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       category_condition = &quot;&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>       order = &quot;price #{sort[:price]}&quot; if sort.present? &amp;&amp; sort[:price].present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>       if filter.present? &amp;&amp; filter[:category].present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>         category = Category.find_by(name: filter[:category])</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>         category_condition = &quot;category_id=#{category.id}&quot; if category.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line38">38</a>       category_condition = &quot;price=#{filter[:price]}&quot; if filter.present? &amp;&amp; filter[:price].present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>       @result = Product.where(category_condition)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>       products = Product.where(category_condition).order(order).offset(offset).limit(limit)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line43">43</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>       json_data = []</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>       products.each do |product|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>         res = product.data_json</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>         res[&quot;links&quot;] = {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>           &quot;self&quot; =&gt; &quot;#{url}/#{product.id}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>         }</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>         json_data &lt;&lt; res</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a>       end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a> 			return json_data</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line53">53</a> 		end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line54">54</a> 	end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2018-01-07 13:38:38 +0000 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

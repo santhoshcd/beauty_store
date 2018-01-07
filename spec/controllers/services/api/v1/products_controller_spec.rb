@@ -68,7 +68,6 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
 
         products.each do |product|
           expected_result["data"] << {
-            "data" => {
               "type" => "products",
               "id" => "#{product.id}",
               "attributes" => {
@@ -83,7 +82,6 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
                 "price" => product.price.to_f,
                 "sale_price" => product.sale_price.to_f,
                 "sale_text" => "#{product.sale_text}"
-              }
             },
             "links" => {
               "self" => "http://test.host/services/api/v1/products/#{product.id}"
@@ -95,6 +93,7 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
         result = JSON.parse(response.body)
         expect(response.code).to eq("200")
         expect(result).to eq(expected_result) 
+
       end
 
       it "should get products details based on paginate" do
@@ -117,22 +116,20 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
 
         products.each do |product|
           expected_result["data"] << {
-            "data" => {
-              "type" => "products",
-              "id" => "#{product.id}",
-              "attributes" => {
-                "product_number" => product.id,
-                "name" => "#{product.name}",
-                "sold_out" => product.sold_out,
-                "category" => {
-                  "name" => "#{product.category.name}",
-                  "id" => "#{product.category.id}"
-                },
-                "under_sale" => product.under_sale,
-                "price" => product.price.to_f,
-                "sale_price" => product.sale_price.to_f,
-                "sale_text" => "#{product.sale_text}"
-              }
+            "type" => "products",
+            "id" => "#{product.id}",
+            "attributes" => {
+              "product_number" => product.id,
+              "name" => "#{product.name}",
+              "sold_out" => product.sold_out,
+              "category" => {
+                "name" => "#{product.category.name}",
+                "id" => "#{product.category.id}"
+              },
+              "under_sale" => product.under_sale,
+              "price" => product.price.to_f,
+              "sale_price" => product.sale_price.to_f,
+              "sale_text" => "#{product.sale_text}"
             },
             "links" => {
               "self" => "http://test.host/services/api/v1/products/#{product.id}"
@@ -168,22 +165,20 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
 
         products.each do |product|
           expected_result["data"] << {
-            "data" => {
-              "type" => "products",
-              "id" => "#{product.id}",
-              "attributes" => {
-                "product_number" => product.id,
-                "name" => "#{product.name}",
-                "sold_out" => product.sold_out,
-                "category" => {
-                  "name" => "#{product.category.name}",
-                  "id" => "#{product.category.id}"
-                },
-                "under_sale" => product.under_sale,
-                "price" => product.price.to_f,
-                "sale_price" => product.sale_price.to_f,
-                "sale_text" => "#{product.sale_text}"
-              }
+            "type" => "products",
+            "id" => "#{product.id}",
+            "attributes" => {
+              "product_number" => product.id,
+              "name" => "#{product.name}",
+              "sold_out" => product.sold_out,
+              "category" => {
+                "name" => "#{product.category.name}",
+                "id" => "#{product.category.id}"
+              },
+              "under_sale" => product.under_sale,
+              "price" => product.price.to_f,
+              "sale_price" => product.sale_price.to_f,
+              "sale_text" => "#{product.sale_text}"
             },
             "links" => {
               "self" => "http://test.host/services/api/v1/products/#{product.id}"
@@ -214,8 +209,7 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
           "meta" => {
             "total_records" => total_products,
             "links" => {
-              "self" => "http://test.host/services/api/v1/products?page[limit]=#{limit}&page[offset]=0&sort[price]=#{order}&filter[category]=#{filter_category_value}",
-              "next" => "http://test.host/services/api/v1/products?page[limit]=#{limit}&page[offset]=#{next_offset}&sort[price]=#{order}&filter[category]=#{filter_category_value}",
+              "self" => "http://test.host/services/api/v1/products?page[limit]=#{limit}&page[offset]=0&sort[price]=#{order}&filter[category]=#{filter_category_value}"
               }
           },
           "data" => [
@@ -224,22 +218,20 @@ RSpec.describe Services::Api::V1::ProductsController, type: :controller do
 
         products.each do |product|
           expected_result["data"] << {
-            "data" => {
-              "type" => "products",
-              "id" => "#{product.id}",
-              "attributes" => {
-                "product_number" => product.id,
-                "name" => "#{product.name}",
-                "sold_out" => product.sold_out,
-                "category" => {
-                  "name" => "#{product.category.name}",
-                  "id" => "#{product.category.id}"
-                },
-                "under_sale" => product.under_sale,
-                "price" => product.price.to_f,
-                "sale_price" => product.sale_price.to_f,
-                "sale_text" => "#{product.sale_text}"
-              }
+            "type" => "products",
+            "id" => "#{product.id}",
+            "attributes" => {
+              "product_number" => product.id,
+              "name" => "#{product.name}",
+              "sold_out" => product.sold_out,
+              "category" => {
+                "name" => "#{product.category.name}",
+                "id" => "#{product.category.id}"
+              },
+              "under_sale" => product.under_sale,
+              "price" => product.price.to_f,
+              "sale_price" => product.sale_price.to_f,
+              "sale_text" => "#{product.sale_text}"
             },
             "links" => {
               "self" => "http://test.host/services/api/v1/products/#{product.id}"
