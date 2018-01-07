@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::API
   rescue_from ActionController::RoutingError do |exception|
+    logger.error "#{exception.message}"
+    logger.error "#{exception.backtrace}"
     respond_not_found
   end
 
   rescue_from Exception do |exception|
+    logger.error "#{exception.message}"
+    logger.error "#{exception.backtrace}"
     respond_internal_error
   end
 
@@ -31,14 +35,15 @@ class ApplicationController < ActionController::API
 
   def respond_internal_error 
     render json: {
-      errors: [
-        {
-          status: "500",
-          source: { "pointer" => pointer },
-          title:  "Internal Server Error",
-          detail: "Please contact support team with the URL"
-        }
-      ]
+      errors: [{
+        status: "500",
+        code: "INTERNAL_SERVER_ERROR",
+        source: { 
+          pointer: pointer 
+        },
+        title:  "Internal Server Error",
+        detail: "Please contact support team with the URL"
+      }]
     }, status: 500
   end
 
@@ -47,7 +52,9 @@ class ApplicationController < ActionController::API
       errors: [{
         status: "401",
         code: "UNAUTHORIZED",
-        source: { "pointer": pointer },
+        source: { 
+          pointer: pointer 
+        },
         title:  "Authentication Failed - Invalid Token",
         detail: "Pass valid username and password to get JWT token"
       }]
@@ -59,11 +66,12 @@ class ApplicationController < ActionController::API
       errors: [{
         status: "401",
         code: "UNAUTHORIZED",
-        source: { pointer: pointer },
+        source: { 
+          pointer: pointer 
+        },
         title:  "Authentication Failed - Invalid Token",
         detail: "Valid JWT token should be used in http header in order to access"
-        }
-      ]
+      }]
     }, status: 401
   end
 

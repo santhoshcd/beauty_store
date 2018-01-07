@@ -1,7 +1,12 @@
 class Product < ApplicationRecord
   belongs_to :category
   validates :name, presence: true
-
+  scope :paginate_results, -> (pagination) {
+    limit( pagination[:limit].to_i ).offset( pagination[:offset] )
+  }
+  scope :ordered_by_price_asc, -> { order(price: :asc) }
+  scope :ordered_by_price_desc, -> { order(price: :desc) }
+  
   def data_json
     {
   		type: "products",

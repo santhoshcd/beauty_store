@@ -6,6 +6,8 @@ class Services::Api::V1::ProductsController < Services::Api::AuthController
     filter = params[:filter]
     sort = params[:sort]
 
+    # TODO : INPUT validation and return 400
+    
     if page.present? 
       offset = page[:offset].to_i 
       limit = page[:limit].to_i

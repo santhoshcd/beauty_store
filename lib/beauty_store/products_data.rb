@@ -25,20 +25,33 @@ module BeautyStore
 		end
 
 		def data
-      order = ""
-      category_condition = ""
-      order = "price #{sort[:price]}" if sort.present? && sort[:price].present?
+      conditions_query = []
+      conditions_values = {}
 
-      if filter.present? && filter[:category].present?
-        category = Category.find_by(name: filter[:category])
-        category_condition = "category_id=#{category.id}" if category.present?
+      if filter.present? && 
+        if filter[:category].present?
+          category = Category.find_by(name: filter[:category])
+          if category.present?
+            conditions_query << "category_id = :category"
+            conditions_values[:category] = category.id
+          end
+        end
+      
+        if filter[:price].present?
+          conditions_query << "price = :price" 
+          conditions_values[:price] = filter[:price].to_i
+        end
       end
 
-      category_condition = "price=#{filter[:price]}" if filter.present? && filter[:price].present?
+      conditions_query = conditions_query.join(" and ")
 
-      @result = Product.where(category_condition)
+      @result = Product.where(conditions_query, conditions_values)
 
-      products = @result.order(order).offset(offset).limit(limit).includes(:category)
+      if sort.present? && sort[:price].present?
+          @result = ((sort[:price].to_s.downcase == "desc") ? @result.ordered_by_price_desc : @result.ordered_by_price_asc)
+      end
+      
+      products = @result.paginate_results(offset: offset, limit:limit).includes(:category)
 
       json_data = []
       products.each do |product|
@@ -48,6 +61,7 @@ module BeautyStore
         }
         json_data << res
       end
+      
 			return json_data
 		end
 	end
