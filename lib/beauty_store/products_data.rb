@@ -38,7 +38,7 @@ module BeautyStore
 
       @result = Product.where(category_condition)
 
-      products = Product.where(category_condition).order(order).offset(offset).limit(limit)
+      products = @result.order(order).offset(offset).limit(limit).includes(:category)
 
       json_data = []
       products.each do |product|
